@@ -1,0 +1,56 @@
+# Click the Variables button, above, to create your own variables.
+GET ${exampleVariable1} // _search
+{
+  "query": {
+    "${exampleVariable2}": {} // match_all
+  }
+}
+
+PUT /hackathon
+
+PUT /hackathon
+{
+    "mappings" : {
+        "properties" : {
+            "fileName" : {
+                "type" : "keyword"
+            },
+            "userId" : {
+                "type" : "keyword"
+            },
+            "createdOn": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "updatedOn": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            }
+        }
+    }
+}
+
+GET /hackathon/${exampleVariable1} // _search
+{
+  "query": {
+    "${exampleVariable2}": {} // match_all
+  }
+}
+
+GET /hackathon/${exampleVariable1}
+{"query": {"bool": {"must": [{"term":
+{"fileName": "one-line-dummy.pdf"}}]}}}
+
+
+GET hackathon/_search?pretty
+{
+    "query": {
+        "bool": {
+            "must": [{"term": {"userId": "joyboy"}},
+                     {"term": {"fileName": "one-line-dummy.pdf"}}]
+        }
+    }
+}
+
+DELETE hackathon
+
